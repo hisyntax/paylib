@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func Base64Conv(text string) string {
@@ -20,11 +21,11 @@ func Authentication(baseURL, clientId, secretKey string) error {
 	basicToken := Base64Conv(basic)
 	url := fmt.Sprintf("%s/passport/oauth/token", baseURL)
 	method := "POST"
-	// payload := strings.NewReader(`{
-	// 	"grant_type": ""
-	// }`)
+	payload := strings.NewReader(`{
+		"grant_type": "MX90293"
+	}`)
 
-	req, err := http.NewRequest(method, url, nil)
+	req, err := http.NewRequest(method, url, payload)
 	if err != nil {
 		log.Println(err)
 		return err
